@@ -5,7 +5,7 @@ provider "azurerm" {
 
 terraform {
     backend "azurerm" {
-        resource_group_name = "tfmainrg"
+        resource_group_name = "tfstaterg"
         storage_account_name = "tfstorageaccountalex"
         container_name = "tfstate"
         key = "terraform.tfstate"
@@ -40,4 +40,3 @@ resource "azurerm_container_group" "tfcg_test" {
           protocol = "TCP"
       }
     }
-}
