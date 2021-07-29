@@ -44,3 +44,4 @@ msbuild.wrn
 secrets
 *.tfstate
 *.tfstate.backup
+*.lock.hcl
