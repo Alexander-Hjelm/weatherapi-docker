@@ -40,3 +40,4 @@ resource "azurerm_container_group" "tfcg_test" {
           protocol = "TCP"
       }
     }
+}
