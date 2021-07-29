@@ -3,11 +3,25 @@ provider "azurerm" {
     features {}
 }
 
+resource "azurerm_storage_account" "tfsa_test" {
+    name = "tfstorageaccountalex"
+    location = azurerm_resource_group.tf_test.location
+    resource_group_name = azurerm_resource_group.tf_test.name
+    account_tier = "Standard"
+    account_replication_type = "LRS"
+    allow_blob_public_access = true
+}
+
+data "azurerm_storage_container" "tfstate" {
+  name                 = "tfstate"
+  storage_account_name = azurerm_storage_account.tfsa_test.name
+}
+
 terraform {
     backend "azurerm" {
-        resource_group_name = "tfmainrg"
-        storage_account_name = "tfstorageaccountalex"
-        container_name = "tfstate"
+        resource_group_name = azurerm_resource_group.tf_test.name
+        storage_account_name = azurerm_storage_account.tfsa_test.name
+        container_name = azurerm_storage_container.tfstate.name
         key = "terraform.tfstate"
     }
 }
