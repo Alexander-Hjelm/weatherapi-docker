@@ -19,9 +19,9 @@ data "azurerm_storage_container" "tfstate" {
 
 terraform {
     backend "azurerm" {
-        resource_group_name = azurerm_resource_group.tf_test.name
-        storage_account_name = azurerm_storage_account.tfsa_test.name
-        container_name = azurerm_storage_container.tfstate.name
+        resource_group_name = "tfmainrg"
+        storage_account_name = "tfstorageaccountalex"
+        container_name = "tfstate"
         key = "terraform.tfstate"
     }
 }
